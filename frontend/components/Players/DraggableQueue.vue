@@ -42,7 +42,7 @@
           </v-list-item-action>
           <v-list-item-action v-if="!isPlaying(index)" class="mr-2">
             <v-btn icon @click="removeFromQueue(item)">
-              <v-icon>mdi-delete-outline</v-icon>
+              <v-icon>mdi-playlist-minus</v-icon>
             </v-btn>
           </v-list-item-action>
         </v-list-item>
