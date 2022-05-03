@@ -41,7 +41,9 @@
             <like-button :item="item" />
           </v-list-item-action>
           <v-list-item-action v-if="!isPlaying(index)" class="mr-2">
-            <item-menu :item="item" />
+            <v-btn icon @click="removeFromQueue(item)">
+              <v-icon>mdi-delete-outline</v-icon>
+            </v-btn>
           </v-list-item-action>
         </v-list-item>
       </v-hover>
@@ -84,6 +86,13 @@ export default Vue.extend({
     }
   },
   methods: {
+    removeFromQueue(item: BaseItemDto): void {
+      const newQueue = this.queue;
+      const index = newQueue.indexOf(item);
+
+      newQueue.splice(index, 1);
+      this.queue = newQueue;
+    },
     isPlaying(index: number): boolean {
       return index === this.playbackManager.currentItemIndex;
     },
