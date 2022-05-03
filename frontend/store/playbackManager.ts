@@ -98,6 +98,13 @@ export const playbackManagerStore = defineStore('playbackManager', {
       queue.push(...translatedItem);
       this.queue = queue;
     },
+    async removeFromQueue(item: BaseItemDto) {
+      const queue = Array.from(this.queue);
+      const translatedItem = await this.translateItemsForPlayback(item);
+
+      queue.splice(queue.indexOf(translatedItem[0]), 1);
+      this.queue = queue;
+    },
     clearQueue(): void {
       this.queue = [];
     },

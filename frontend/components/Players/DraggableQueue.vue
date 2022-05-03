@@ -86,12 +86,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    removeFromQueue(item: BaseItemDto): void {
-      const newQueue = this.queue;
-      const index = newQueue.indexOf(item);
-
-      newQueue.splice(index, 1);
-      this.queue = newQueue;
+    async removeFromQueue(item: BaseItemDto): Promise<void> {
+      await this.playbackManager.removeFromQueue(item);
     },
     isPlaying(index: number): boolean {
       return index === this.playbackManager.currentItemIndex;
