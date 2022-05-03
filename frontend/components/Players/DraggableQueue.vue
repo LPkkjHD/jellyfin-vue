@@ -41,9 +41,7 @@
             <like-button :item="item" />
           </v-list-item-action>
           <v-list-item-action v-if="!isPlaying(index)" class="mr-2">
-            <v-btn icon @click="removeFromQueue(item)">
-              <v-icon>mdi-playlist-minus</v-icon>
-            </v-btn>
+            <play-list-item-menu :item="item" />
           </v-list-item-action>
         </v-list-item>
       </v-hover>
@@ -57,8 +55,10 @@ import { mapStores } from 'pinia';
 import { v4 as uuidv4 } from 'uuid';
 import { BaseItemDto } from '@jellyfin/client-axios';
 import { playbackManagerStore } from '~/store';
+import PlayListItemMenu from '~/components/Item/PlayListItemMenu.vue';
 
 export default Vue.extend({
+  components: { PlayListItemMenu },
   data() {
     return {
       dragOptions: {
